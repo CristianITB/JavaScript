@@ -31,41 +31,67 @@ function checkNumberPosition(userNum, userPosition, arrayList){
 
 //Ex. 4:
 function checkAll(randomArray){
-    let userArray = [];
-    while(userArray.length < 5){
+    let userInputArray = [];
+    while(userInputArray.length < 5){
         let userNum = parseInt(prompt('Introduce un número'));
-        userArray.push(userNum);
+        userInputArray.push(userNum);
     }
+    console.log(userInputArray);
+
     let userReturnArray = ["x", "x", "x", "x", "x"];
-    for(let i = 0; i < userArray.length; i++){
-        check = checkNumberPosition(userArray[i], i, randomArray);
+    for(let i = 0; i < userInputArray.length; i++){
+        check = checkNumberPosition(userInputArray[i], i, randomArray);
         if (check == true){
             userReturnArray[i] = "Ok";
         }
     }
-    if (userReturnArray = ["Ok","Ok", "Ok", "Ok", "Ok"]){
-        return true
-    } else{
-        return userReturnArray
+    console.log(userReturnArray);
+
+    let checker = false;
+    for(let i = 0; i < userReturnArray.length; i++){
+        if(userReturnArray[i] == "Ok"){
+            checker = true;
+        } else{
+            checker = false;
+            break;
+        }
     }
+    return checker
+    //intenté hacer las comprobaciones con el codigo que hay en la 
+    //función llamada "prueba" que hay más abajo, pero no se porqué
+    //no funciona. 
 }
 
 //Ex. 5:
 function main(){
-    let arrayNums = getArrayNums();
-    console.log(arrayNums);
+    let arrayRandomNums = getArrayNums();
+    console.log("Array generada aleatoriamente:")
+    console.log(arrayRandomNums);
+    console.log("Juego del usuario:")
 
     let i = 0;
-    while(i < 5){
-        let resultat = checkAll(arrayNums);
+    while(i < 4){
+        let resultat = checkAll(arrayRandomNums);
         if (resultat == true){
             alert("Muy bien! Has ganado!");
             break;
-        } else{
-            document.writeln(resultat);
         }
         i += 1;
     }
-
+    if (i = 4){
+        console.log("Has perdido :(")
+    }
 }
 main();
+//prueba());
+
+/*
+function prueba(){
+    let list = ["Ok", "Ok", "Ok", "Ok", "Ok"];
+    if (list == ["Ok", "Ok", "Ok", "Ok", "Ok"]){
+        console.log("Todo ok");
+    } else {
+        console.log("Todo mal");
+    }
+}
+*/

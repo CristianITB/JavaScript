@@ -13,7 +13,7 @@ function checkNumberAppearance(userNum, arrayList){
     let counter = 0;
     for(let i = 0; i <= arrayList.length; i++) {
         if (arrayList[i] == userNum){
-            counter += 1;
+            counter++;
         }
     }
     return counter

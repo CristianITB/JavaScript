@@ -5,7 +5,7 @@ function getArrayNums(){
         let num = Math.floor((Math.random() * 10));
         array.push(num);
     }
-    return array
+    return array;
 }
 
 //Ex. 2:
@@ -16,7 +16,7 @@ function checkNumberAppearance(userNum, arrayList){
             counter++;
         }
     }
-    return counter
+    return counter;
 }
 
 //Ex. 3:
@@ -25,7 +25,7 @@ function checkNumberPosition(userNum, userPosition, arrayList){
     if (arrayList[userPosition] == userNum){
         exists = true;
     }
-    return exists
+    return exists;
 }
 //console.log(checkNumberPosition(5, 0, [1, 2, 3, 4, 5]));
 

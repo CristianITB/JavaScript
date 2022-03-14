@@ -79,7 +79,7 @@ function main(){
         i += 1;
     }
     if (i = 4){
-        console.log("Has perdido :(")
+        alert("Has perdido :(")
     }
 }
 main();

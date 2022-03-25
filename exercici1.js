@@ -39,3 +39,17 @@ document.writeln("multiTriple = " + resultatTriple)
 //4. Encuentra entre los primeros 10.000 números naturales los números que 
 //   completan la siguiente propiedad: El cubo de la suma de sus cifras cifras 
 //   es igual al mismo número.
+function tripleCombo(num){
+    let cifra = num%10;
+    let numList = [];
+    numList.push(cifra);
+
+    if (num/10 < 0){
+        return numList;
+    } else {
+        return tripleCombo((num-cifra)/10);
+    }
+}
+//console.log(tripleCombo(123));
+console.log(3%10);
+console.log((123-3)/10);

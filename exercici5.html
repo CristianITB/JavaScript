@@ -4,21 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <script src="exercici5.js"></script>
-    
-        <title>Ejercicio: DOM</title>
+        <title>Exercici: DOM</title>
     </head>
     <body>
-        <h1 id="titulo">Aprendiendo Document Object Model</h1>
+        <h1 id="titulo">Aprenent Document Object Model</h1>
         <section>
-            <p>Apartado sobre fechas</p>
-            
+            <h2>Apartat sobre dates</h2>
+            <div>
+                <p>Avui és <span class="diaSetmana"></span> dia <span id="diaMes"></span>/<span id="mes"></span>/<span id="any"></span>.</p>
+            </div>
         </section>
         <section>
-            <p>Apartado del reloj</p>
+            <h2>Apartat del rellotge</h2>
+            <p>Són les: <span class="rellotge"></span></p>
         </section>
         <section>
-            <p>Apartado de: estamos en M04?</p>
+            <h2>Apartat de: estem a M04?</h2>
+            <p>Ara mateix (<span class="diaSetmana"></span> a les <span class="rellotge"></span>) <strong id="tensClasse"></strong> tens classe de M04.</p>
         </section>
+
+        <script src="exercici5.js"></script>
     </body>
 </html>

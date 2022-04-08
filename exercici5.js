@@ -52,6 +52,8 @@ function imprimirSegons(){
     let minuts = date.getMinutes();
     let segons = date.getSeconds();
 
+    //let hora = String(date.getHours()).padStart(2, "0");
+
     if (hora < 10){
         hora = "0" + hora
     }
@@ -72,28 +74,27 @@ function imprimirSegons(){
 /* ------ Estic a M04? ----- */
 function esticM04(){
 
-    /*
-    let diaSetmana = parseInt(prompt('Introduce un dia de la semana (0-7)'));
-    let hora = parseInt(prompt('Introduce una hora (0-23)'));
-    let minuts = parseInt(prompt('Introduce los minutos (0-59)'));
-    */
+    let date = new Date();
+    let diaSetmana = date.getDay();
+    let hora = date.getHours();
+    let minuts = date.getMinutes();
 
     let tenimClasse = false;
 
     if (diaSetmana == 1){
         if (hora == 11){
             if (minuts > 15){
-                tenimClasse = true
+                tenimClasse = true;
             }
         } else if (hora == 12){
             if (minuts < 10){
-                tenimClasse = true
+                tenimClasse = true;
             }
         }
     } else if (diaSetmana == 5){
         if (hora == 8 || hora == 9){
             if (minuts < 50){
-                tenimClasse = true
+                tenimClasse = true;
             }
         } 
     }

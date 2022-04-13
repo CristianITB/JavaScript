@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Inserta files en una taula</title>
+        <script src="DOMExercici6.js"></script>
+    </head>
+
+    <body>
+        <table id="Taula" border="1">
+            <tr>
+                <td>Fila 1 cel·la 1</td>
+                <td>Fila 1 cel·la 2</td>
+            </tr>
+            <tr>
+                <td>Fila 2 cel·la 1</td>
+                <td>Fila 2 cel·la 2</td>
+            </tr>
+        </table><br>
+        <input type="button" onclick="insertarFilaPrincipi()" value="Inserta Fila a sobre">
+        <br><br>
+        <input type="button" onclick="insertarFilaFinal()" value="Inserta Fila a sota">
+        <br><br>
+        <pre>
+        Fila:        <input type="text" name="fila" value=""><br>
+        Cel·la:      <input type="text" name="cela" value=""><br>
+        Contingut:   <input type="text" name="contingut" value="" placeholder="Escriu el nou contingut"><br><br>
+        <button onclick="canviarCela()">Clica aquí per canviar el contingut</button>
+        </pre>
+    </body>
+</html>

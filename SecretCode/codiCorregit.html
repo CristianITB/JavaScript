@@ -1,0 +1,123 @@
+
+Solucion Ejercicio2: Código Secreto
+Alicia Vazquez
+•
+18 mar
+Solución hecha y probada en clase.
+
+Ejercicio2_CodigoSecreto.html
+HTML
+Comentarios de la clase
+
+Solucion Ejercicio2: Código Secreto
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function generaCodigo() {
+            //Version corta
+            var radom = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10 + 1));
+
+            //version larga
+            let codigo = [];
+            for (let i = 0; i < 5; i++) {
+                let newNumber = Math.floor(Math.random() * 10 + 1);
+                codigo.push(newNumber);
+            }
+            return radom;
+        }
+
+        function contarNumero(codigo, numero) {
+            let total = 0;
+            for (let i = 0; i < 5; i++) {
+                if (numero == codigo[i]) {
+                    total++;
+                }
+            }
+            return total;
+        }
+
+        function estaEnPos(codigo, num, pos) {
+            let exist = false;
+            if (codigo[pos] == num) {
+                exist = true;
+            }
+            return exist;
+
+        }
+
+
+        function busca(codigo, codigoUser) {
+            let sol = [5];
+            let conterMAtch = 0;
+            for (let i = 0; i < codigo.length; i++) {
+                conterMAtch = contarNumero(codigo, codigoUser[i]);
+                sol[i] = conterMAtch;
+                if (conterMAtch > 0) {
+                    if (estaEnPos(codigo, codigoUser[i], i)) {
+                        sol[i] = "ok"
+                    }
+                }
+
+            }
+            return sol;
+        }
+
+        function hasAcertado(sol) {
+            for (i = 0; i < sol.length; i++) {
+                if (sol[i] != "ok") {
+                    return false;
+                }
+            }
+            return true;
+        }
+        function main() {
+            let codigo = generaCodigo();
+
+            //let veces = contarNumero(codigo, num);
+
+            //console.log(codigo, veces);
+            console.log(codigo);
+
+            let oportinities = 4;
+            while (oportinities != 0) {
+                let codigoUser = [];
+
+                for (let i = 0; i < 5; i++) {
+                    codigoUser[i] = prompt("Dame un número de 1 a 10");
+                }
+
+                console.log("Codigo USer: ", codigoUser);
+
+                let sol = busca(codigo, codigoUser);
+                console.log("Result", sol);
+
+                if (hasAcertado(sol) == true) {
+                    console.log("Eres un crack");
+                    oportinities = 0;
+                } else {
+                    console.log("Has fallado");
+                    oportinities--;
+                }
+
+            }
+
+            //let esta= estaEnPos(,num, pos);
+            // console.log(esta);
+
+
+
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

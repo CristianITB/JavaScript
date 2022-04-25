@@ -13,7 +13,7 @@ function insertarFilaPrincipi(){
 
 function insertarFilaFinal(){
     var table = document.getElementById("Taula");
-    var row = table.insertRow(2);
+    var row = table.insertRow(table.rows.length);
     //com puc fer per no haver de posar el 2 aquí i a l'altre funció el 0?
     //algo tipo lastIndex o length?
     var cell1 = row.insertCell(0);

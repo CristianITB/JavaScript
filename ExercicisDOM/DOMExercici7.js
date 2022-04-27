@@ -11,7 +11,6 @@ function afegirTaula(){
     var table = document.getElementById("Taula");
 
     for (i = 0; i < files; i++) {
-        console.log("manolo");
         var row = table.insertRow(i);
         for(j = 0; j < columnes; j++){
             var cell = row.insertCell(j);

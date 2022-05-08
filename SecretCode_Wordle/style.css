@@ -27,6 +27,8 @@ main{
     width: 100%;
 }
 
+
+
 .cel{
     height: 82px;
     z-index: 1;
@@ -111,3 +113,9 @@ button:hover, button:focus{
     align-items: center;
 }
 
+.correctCel{
+    background-color: green;
+}
+.existingCel{
+    background-color: coral;
+}

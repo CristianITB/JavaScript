@@ -1,5 +1,5 @@
 const codigo = [1, 3, 5, 7, 9];
-const maxIntentos = 8;
+const maxIntentos = 4;
 var turnos = 0;
 
 var input = document.getElementById("userNum");
@@ -23,39 +23,47 @@ function generarCodigoSecreto() {
 generarCodigoSecreto();
 
 
+//He tenido que poner el final del juego dentro del if
+//en vez de fuera en un else ya que al pedir primero el número
+//y luego ejecutar la función comprobar, si lo dejaba como else
+//me pedía el número aún habiendo acabado ya la partida y ese número
+//no servía para nada, es decir, ni te lo printaba ni te decía
+//que habías ganado si metías el código correcto.
+//El hacer esto, hace que funcione pero causa un error que
+//se puede ver en la consola.
 function comprobar(){
     turnos++;
-    if (turnos < maxIntentos){
-        let hasWin = comprobarResultado();
+    if (turnos <= maxIntentos){
         document.getElementById("userNum").focus();
+        let hasWin = comprobarResultado();
+
         if (hasWin == true){
             endGame(true);
         }
-    } else{
-        endGame(false);
-    }
+        if (turnos >= maxIntentos){
+            endGame(false);
+        }
+    } 
 }
 
 function comprobarResultado(){
     var userNum = getUserNum();
 
     if (userNum.length != codigo.length){
-        alert("Por favor, introduce un número de "+ codigo.length + " cifras.");
-        userNum = ["-", "-", "-", "-", "-"];
-        turnos--;
+        userNum = wrongInput(userNum);
     }
+
+    //intenté hacer algo aquí para comprobar que no se metiese 
+    //ninguna letra pero no se porque en el pc de classe al hacer
+    //parseInt() de una letra no lo pasa a number y aquí en casa sí.
+    /*
     for (let i = 0; i < 5; i++) {
-        console.log(typeof userNum[i]);
-            if (parseInt(userNum[i]) == NaN){
-                console.log("manolo")
-            }       
+        if (parseInt(userNum[i]) != "number"){
+            userNum = wrongInput(userNum);
+            break;
+        }       
     }
-    alert("Por favor, introduce un número de "+ codigo.length + " cifras.");
-    userNum = ["-", "-", "-", "-", "-"];
-    turnos--;
-    
-
-
+    */
 
     let fraseInfo = document.getElementById("info");
     fraseInfo.innerHTML = "Intento número " + (turnos+1) + ".";
@@ -101,21 +109,29 @@ function getUserNum(){
     return userNum
 }
 
+function wrongInput(userNum){
+    alert(userNum + ": No és válido. Por favor, introduce un número de "+ codigo.length + " cifras.");
+    userNum = ["-", "-", "-", "-", "-"];
+    turnos--;
+    return userNum;
+}
+
 function endGame(hasWin){
+    document.getElementById("comprobar").remove();
     const raiz = document.getElementsByClassName("cel");
     for (i = 0; i < codigo.length; i++){
         raiz[i].innerHTML = codigo[i];
     }
     
+    let fraseInfo = document.getElementById("info");
     if (hasWin == true){
         let sectionInfo = document.getElementsByClassName("info");
+
         for (i = 0; i < sectionInfo.length; i++){
             sectionInfo[i].setAttribute('class', 'correctCel info');
         }
-        let fraseInfo = document.getElementById("info");
         fraseInfo.innerHTML = "Muy bien! Has acertado todas en " + turnos + " intentos!";
     } else{
-        let fraseInfo = document.getElementById("info");
         fraseInfo.innerHTML = "Lo siento, has perdido:(";
     }
 }

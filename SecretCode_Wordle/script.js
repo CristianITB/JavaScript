@@ -1,5 +1,5 @@
 const codigo = [1, 3, 5, 7, 9];
-const maxIntentos = 4;
+const maxIntentos = 8;
 var turnos = 0;
 
 var input = document.getElementById("userNum");

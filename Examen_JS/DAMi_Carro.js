@@ -102,16 +102,16 @@ function anadirProductos() {
     const raizTabla = document.getElementById("tablebody");
     var total = 0;
     for(i = 0; i <= totalItems; i++){
-        let productoComprado = productosComprados[i];
         let fila = document.createElement("tr");
-        let celdaNombre = creaCelda(productos[productoComprado].nombre);
-        let celdaPrecio = creaCelda(productos[productoComprado].precio);
-        let descuento = productos[productoComprado].descuento.slice(0, productos[productoComprado].descuento.length-1);
-        let descuentoCalculado = productos[productoComprado].precio * descuento/100;
+        console.log(productosComprados[i].nombre);
+        let celdaNombre = creaCelda(productosComprados[i].nombre);      //a tot això si canvio productosComprados[i] per productos[i] sí que funciona, però no sé
+        let celdaPrecio = creaCelda(productosComprados[i].precio);      //perquè tal i com ho tinc no funciona.
+        let descuento = productosComprados[i].descuento.slice(0, productosComprados[i].descuento.length-1);
+        let descuentoCalculado = productosComprados[i].precio * descuento/100;
         let celdaDescuento = creaCelda(descuentoCalculado);
-        let celdaCantidad = creaCelda(document.getElementById(""+productos[productoComprado].nombre).value);
-        let celdaTotal = creaCelda((productos[productoComprado].precio * (100-descuento)/100)+'€');
-        total += (productos[productoComprado].precio * (100-descuento)/100);
+        let celdaCantidad = creaCelda(document.getElementById(""+productosComprados[i].nombre).value);
+        let celdaTotal = creaCelda((productosComprados[i].precio * (100-descuento)/100)+'€');
+        total += (productosComprados[i].precio * (100-descuento)/100);
 
         fila.appendChild(celdaNombre);
         fila.appendChild(celdaPrecio);
@@ -121,8 +121,8 @@ function anadirProductos() {
         
         raizTabla.appendChild(fila);
     }
+    console.log(total);
     document.getElementById("subtotal").innerHTML = total;
-
 }
 
 function getTotalItems(){
@@ -141,9 +141,11 @@ function getProductosComprados(){
     for(i = 0; i <= productos.length-1; i++){
         let cantidad = document.getElementById(""+productos[i].nombre).value;
         if(cantidad > 0){
-            productosComprados.push(i);
+            console.log(productos[i]);
+            productosComprados.push(productos[i]);
         }
     }
+    console.log(productosComprados)
     return productosComprados;
 }
 
@@ -157,6 +159,6 @@ function creaCelda(valor) {
 function vaciaCarro() {
     let tabla = document.getElementById("tablebody");
     while (tabla.hasChildNodes()) {
-        let child = tabla.removeChild(tabla.firstChild)
+        tabla.removeChild(tabla.firstChild)
     }
 }

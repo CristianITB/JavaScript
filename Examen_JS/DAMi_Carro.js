@@ -101,17 +101,24 @@ function anadirProductos() {
 
     const raizTabla = document.getElementById("tablebody");
     var total = 0;
-    for(i = 0; i <= totalItems; i++){
+    for(i = 0; i < totalItems; i++){
         let fila = document.createElement("tr");
-        console.log(productosComprados[i].nombre);
-        let celdaNombre = creaCelda(productosComprados[i].nombre);      //a tot això si canvio productosComprados[i] per productos[i] sí que funciona, però no sé
-        let celdaPrecio = creaCelda(productosComprados[i].precio);      //perquè tal i com ho tinc no funciona.
+
+        if(productos[i].descuento != ""){
+            var celdaNombre = creaCelda(productosComprados[i].nombre + '**');
+        } else{
+            var celdaNombre = creaCelda(productosComprados[i].nombre)
+        }
+        let celdaPrecio = creaCelda(productosComprados[i].precio);
         let descuento = productosComprados[i].descuento.slice(0, productosComprados[i].descuento.length-1);
         let descuentoCalculado = productosComprados[i].precio * descuento/100;
-        let celdaDescuento = creaCelda(descuentoCalculado);
-        let celdaCantidad = creaCelda(document.getElementById(""+productosComprados[i].nombre).value);
-        let celdaTotal = creaCelda((productosComprados[i].precio * (100-descuento)/100)+'€');
-        total += (productosComprados[i].precio * (100-descuento)/100);
+        let celdaDescuento = creaCelda(descuentoCalculado.toFixed(2));
+        let cantidadProducto = document.getElementById(""+productosComprados[i].nombre).value
+        let celdaCantidad = creaCelda(cantidadProducto);
+        let totalProducto = (productosComprados[i].precio * (100-descuento)/100 * cantidadProducto)
+        let celdaTotal = creaCelda(totalProducto.toFixed(2)+'€');
+        total += (totalProducto);
+
 
         fila.appendChild(celdaNombre);
         fila.appendChild(celdaPrecio);
@@ -121,8 +128,7 @@ function anadirProductos() {
         
         raizTabla.appendChild(fila);
     }
-    console.log(total);
-    document.getElementById("subtotal").innerHTML = total;
+    document.getElementById("subtotal").innerHTML = total.toFixed(2);
 }
 
 function getTotalItems(){
@@ -141,11 +147,9 @@ function getProductosComprados(){
     for(i = 0; i <= productos.length-1; i++){
         let cantidad = document.getElementById(""+productos[i].nombre).value;
         if(cantidad > 0){
-            console.log(productos[i]);
             productosComprados.push(productos[i]);
         }
     }
-    console.log(productosComprados)
     return productosComprados;
 }
 
